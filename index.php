@@ -1,7 +1,7 @@
 <?php
-/*  ai-blog  ——  2025
-    小到透明，大到自由
+/*  AI-Blog
     https://github.com/admxn-coder/ai-blog
+    License: MIT
 */
 
 session_start();
@@ -73,7 +73,7 @@ if (!file_exists(CONFIG_FILE) || $act === 'install') {
         }
     }
     ?><!DOCTYPE html>
-    <html><head><meta charset="utf-8"><title>初始化博客</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>*, :after, :before, :focus {margin: 0;padding: 0;box-sizing: border-box;box-shadow: none;outline: none;letter-spacing: .5px}body{max-width:400px;margin:2rem auto;padding:1rem;font:16px/1.6 Georgia,serif;}form{margin-top:2rem;}form input,form textarea,form button,input:focus,textarea:focus,button:focus{width:100%;font:inherit;padding:.5em;margin:.5em 0;border: none;border:1px solid #ccc;}</style></head><body>
+    <html><head><meta charset="utf-8"><title>初始化博客</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>*,::after,::before{margin:0;box-sizing:border-box;letter-spacing:.5px}body{max-width:400px;margin:2rem auto;padding:1rem;font:16px/1.6 Georgia,serif;}form{margin-top:2rem;}form input,form textarea,form button,input:focus,textarea:focus,button:focus{width:100%;font:inherit;padding:.5em;margin:.5em 0;border: none;border:1px solid #ccc;}</style></head><body>
     <h2>初始化博客</h2>
     <form method="post">
         <input name="site_name" placeholder="站点名称" value="<?php echo htmlspecialchars($config['site_name']);?>" required>
@@ -376,8 +376,8 @@ $title = $show ? htmlspecialchars($show['title']) . ' - ' . $site_name : $site_n
 <meta name="generator" content="ai-blog">
 <meta name="license" content="MIT License">
 <style>
-*,:after,:before,:focus{margin:0;padding:0;box-sizing:border-box;box-shadow:none;outline:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;background:#fff}
+*,::after,::before{margin:0;box-sizing:border-box;letter-spacing:.5px}
+body { font-family: system-ui, sans-serif; line-height: 1.6;}
 footer,header,main{max-width:580px;margin:3rem auto;padding:0 1rem}
 a{text-decoration:none;color:#222}
 nav{margin-bottom:4rem;display:flex;gap:1rem}
@@ -465,10 +465,6 @@ button{cursor:pointer}
     <h1><?php echo htmlspecialchars($show['title']);?></h1>
     <time><?php echo date('M j, Y', $show['time']);?></time>
     <?php if(empty($show['public'])): ?>未公开<?php endif; ?>
-    <?php if(is_login()): ?>
-    <a href="?a=edit&id=<?php echo $show['id'];?>">编辑</a>
-    <a href="?a=delete&id=<?php echo $show['id'];?>&csrf_token=<?php echo htmlspecialchars(get_csrf_token());?>" onclick="return confirm('确定删除？')">删除</a>
-    <?php endif; ?>
 
     <article id="md-content" itemprop="articleBody">
         <?php
